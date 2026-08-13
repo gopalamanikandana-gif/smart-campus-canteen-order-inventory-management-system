@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Register | Campus Canteen{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h1>Create account</h1><p class="muted">Register as a student to order food.</p>
+  <form method="post">
+    <label>Name<input name="name" required minlength="2" maxlength="100"></label>
+    <label>Email<input name="email" type="email" required maxlength="150"></label>
+    <label>Password<input name="password" type="password" required minlength="6"></label>
+    <button class="btn full" type="submit">Register</button>
+  </form>
+</div>
+{% endblock %}

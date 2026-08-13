@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Campus Canteen{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+<header class="navbar">
+  <a class="brand" href="{{ url_for('menu') }}">Campus<span>Canteen</span></a>
+  <nav>
+    <a href="{{ url_for('menu') }}">Menu</a>
+    {% if current_user %}
+      <a href="{{ url_for('cart') }}">Cart</a>
+      <a href="{{ url_for('order_history') }}">My Orders</a>
+      {% if current_user.role == "admin" %}<a href="{{ url_for('admin_dashboard') }}">Admin</a>{% endif %}
+      <span class="user-chip">{{ current_user.name }}</span>
+      <a class="btn btn-outline" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a class="btn" href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+  </nav>
+</header>
+
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Smart Campus Canteen Management System</footer>
+</body>
+</html>

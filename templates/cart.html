@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Cart | Campus Canteen{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">YOUR CART</p><h1>Review your order</h1></div></div>
+{% if lines %}
+<form method="post" action="{{ url_for('update_cart') }}">
+  <div class="table-wrap"><table><thead><tr><th>Item</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr></thead><tbody>
+  {% for line in lines %}
+  <tr><td><b>{{ line.item.name }}</b></td><td>₹{{ '%.2f'|format(line.item.price) }}</td>
+  <td><input class="qty" type="number" min="1" max="{{ line.item.stock }}" name="qty_{{ line.item.id }}" value="{{ line.quantity }}"></td>
+  <td>₹{{ '%.2f'|format(line.subtotal) }}</td><td><button class="link-danger" formaction="{{ url_for('remove_from_cart', item_id=line.item.id) }}" formmethod="post">Remove</button></td></tr>
+  {% endfor %}
+  </tbody></table></div>
+  <div class="cart-actions"><button class="btn btn-outline" type="submit">Update cart</button><div class="total">Total: <b>₹{{ '%.2f'|format(total) }}</b>
+  <button class="btn" type="submit" formaction="{{ url_for('place_order') }}" formmethod="post">Place order</button></div></div>
+</form>
+{% else %}
+<div class="empty"><h2>Your cart is empty</h2><a class="btn" href="{{ url_for('menu') }}">Browse menu</a></div>
+{% endif %}
+{% endblock %}

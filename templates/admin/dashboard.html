@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}Admin Dashboard | Campus Canteen{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">ADMIN CONTROL CENTER</p><h1>Dashboard</h1></div></div>
+<section class="admin-grid">
+<div class="panel"><h2>Add menu item</h2>
+<form method="post" action="{{ url_for('admin_add_item') }}" class="form-grid">
+<input name="name" placeholder="Item name" required maxlength="120"><input name="category" placeholder="Category" required maxlength="80">
+<textarea name="description" placeholder="Description" maxlength="500"></textarea><input name="price" type="number" min="0.01" step="0.01" placeholder="Price" required>
+<input name="stock" type="number" min="0" placeholder="Stock" required><button class="btn" type="submit">Add item</button>
+</form></div>
+<div class="panel"><h2>Inventory</h2>
+<div class="admin-list">{% for item in items %}<details><summary><b>{{ item.name }}</b><span>₹{{ '%.2f'|format(item.price) }} · {{ item.stock }} stock</span></summary>
+<form method="post" action="{{ url_for('admin_edit_item', item_id=item.id) }}" class="form-grid compact">
+<input name="name" value="{{ item.name }}" required><input name="category" value="{{ item.category }}" required>
+<input name="price" type="number" min="0.01" step="0.01" value="{{ item.price }}" required><input name="stock" type="number" min="0" value="{{ item.stock }}" required>
+<input class="wide" name="description" value="{{ item.description }}"><button class="btn" type="submit">Save</button>
+</form><form method="post" action="{{ url_for('admin_delete_item', item_id=item.id) }}"><button class="link-danger" type="submit" data-confirm="Remove this item from the active menu?">Remove</button></form>
+</details>{% endfor %}</div></div>
+</section>
+<section class="panel"><h2>Orders</h2>
+<div class="table-wrap"><table><thead><tr><th>Order</th><th>Student</th><th>Items</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody>
+{% for order in orders %}<tr><td>#{{ order.id }}<br><small>{{ order.created_at.strftime('%d %b %I:%M %p') }}</small></td><td>{{ order.user.name }}<br><small>{{ order.user.email }}</small></td>
+<td>{% for item in order.items %}{{ item.item_name }} × {{ item.quantity }}{% if not loop.last %}, {% endif %}{% endfor %}</td><td>₹{{ '%.2f'|format(order.total) }}</td><td><span class="status {{ order.status|lower }}">{{ order.status }}</span></td>
+<td><form method="post" action="{{ url_for('admin_order_status', order_id=order.id) }}"><select name="status"><option>Pending</option><option>Preparing</option><option>Ready</option><option>Completed</option><option>Cancelled</option></select><button class="btn small" type="submit">Update</button></form></td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

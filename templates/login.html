@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Login | Campus Canteen{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h1>Welcome back</h1><p class="muted">Sign in to order from the campus canteen.</p>
+  <form method="post">
+    <label>Email<input name="email" type="email" required autocomplete="email"></label>
+    <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+    <button class="btn full" type="submit">Login</button>
+  </form>
+  <p class="muted">No account? <a href="{{ url_for('register') }}">Create one</a></p>
+  <div class="demo-box"><b>Demo student:</b> student@canteen.local / Student@123<br><b>Demo admin:</b> admin@canteen.local / Admin@123</div>
+</div>
+{% endblock %}

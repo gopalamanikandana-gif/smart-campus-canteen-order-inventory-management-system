@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block title %}Menu | Campus Canteen{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">SMART CAMPUS DINING</p><h1>Fresh food, simple ordering.</h1><p>Browse today's menu and place your order in a few clicks.</p></div>
+</section>
+<form class="search" method="get">
+  <input name="q" value="{{ query }}" placeholder="Search menu items...">
+  <button class="btn" type="submit">Search</button>
+</form>
+<div class="grid">
+{% for item in items %}
+  <article class="card">
+    <div class="card-top"><span class="pill">{{ item.category }}</span><span class="stock">{{ item.stock }} left</span></div>
+    <h2>{{ item.name }}</h2><p class="muted">{{ item.description }}</p>
+    <div class="card-bottom"><strong>₹{{ '%.2f'|format(item.price) }}</strong>
+      {% if current_user %}
+      <form method="post" action="{{ url_for('add_to_cart', item_id=item.id) }}"><button class="btn" type="submit" {% if item.stock < 1 %}disabled{% endif %}>{% if item.stock %}Add to cart{% else %}Sold out{% endif %}</button></form>
+      {% else %}<a class="btn" href="{{ url_for('login') }}">Login to order</a>{% endif %}
+    </div>
+  </article>
+{% else %}
+  <div class="empty"><h2>No items found</h2><p>Try another search.</p></div>
+{% endfor %}
+</div>
+{% endblock %}

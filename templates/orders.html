@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}My Orders | Campus Canteen{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">ORDER HISTORY</p><h1>My orders</h1></div></div>
+{% for order in orders %}
+<article class="order-card">
+  <div class="order-head"><div><b>Order #{{ order.id }}</b><span class="muted"> · {{ order.created_at.strftime('%d %b %Y, %I:%M %p') }}</span></div><span class="status {{ order.status|lower }}">{{ order.status }}</span></div>
+  <div class="order-items">{% for item in order.items %}<div><span>{{ item.item_name }} × {{ item.quantity }}</span><span>₹{{ '%.2f'|format(item.subtotal) }}</span></div>{% endfor %}</div>
+  <div class="order-total">Total ₹{{ '%.2f'|format(order.total) }}</div>
+</article>
+{% else %}<div class="empty"><h2>No orders yet</h2><a class="btn" href="{{ url_for('menu') }}">Start ordering</a></div>{% endfor %}
+{% endblock %}
