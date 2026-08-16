@@ -1,0 +1,98 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/claude/project/smart-campus-canteen
+collecting ... collected 74 items
+
+tests/test_admin.py::test_admin_can_add_menu_item PASSED                 [  1%]
+tests/test_admin.py::test_admin_can_edit_menu_item PASSED                [  2%]
+tests/test_admin.py::test_admin_edit_nonexistent_item_is_handled PASSED  [  4%]
+tests/test_admin.py::test_admin_can_update_price PASSED                  [  5%]
+tests/test_admin.py::test_admin_can_update_stock PASSED                  [  6%]
+tests/test_admin.py::test_admin_setting_stock_to_zero_marks_item_unavailable PASSED [  8%]
+tests/test_admin.py::test_admin_can_remove_menu_item PASSED              [  9%]
+tests/test_admin.py::test_admin_can_update_order_status PASSED           [ 10%]
+tests/test_admin.py::test_admin_add_item_with_zero_price_is_rejected PASSED [ 12%]
+tests/test_admin.py::test_admin_add_item_with_negative_price_is_rejected PASSED [ 13%]
+tests/test_admin.py::test_admin_add_item_with_non_numeric_price_is_rejected PASSED [ 14%]
+tests/test_admin.py::test_admin_add_item_with_negative_stock_is_rejected PASSED [ 16%]
+tests/test_admin.py::test_admin_add_item_with_non_numeric_stock_is_rejected PASSED [ 17%]
+tests/test_admin.py::test_admin_invalid_order_status_is_rejected PASSED  [ 18%]
+tests/test_admin.py::test_admin_update_status_for_nonexistent_order_is_rejected PASSED [ 20%]
+tests/test_auth.py::test_register_with_valid_data_creates_student PASSED [ 21%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload0-Enter a valid name.] PASSED [ 22%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload1-Enter a valid email.] PASSED [ 24%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload2-Password must be at least 6 characters.] PASSED [ 25%]
+tests/test_auth.py::test_duplicate_email_registration_is_rejected PASSED [ 27%]
+tests/test_auth.py::test_valid_student_login_succeeds PASSED             [ 28%]
+tests/test_auth.py::test_valid_login_redirects_student_to_menu PASSED    [ 29%]
+tests/test_auth.py::test_valid_login_redirects_admin_to_dashboard PASSED [ 31%]
+tests/test_auth.py::test_login_with_wrong_password_is_rejected PASSED    [ 32%]
+tests/test_auth.py::test_login_with_unknown_email_is_rejected PASSED     [ 33%]
+tests/test_auth.py::test_logout_ends_session PASSED                      [ 35%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_view_cart PASSED [ 36%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_view_order_history PASSED [ 37%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_add_to_cart PASSED [ 39%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_place_order PASSED [ 40%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_access_admin_dashboard PASSED [ 41%]
+tests/test_authorization.py::test_student_cannot_access_admin_dashboard PASSED [ 43%]
+tests/test_authorization.py::test_student_cannot_add_menu_item PASSED    [ 44%]
+tests/test_authorization.py::test_student_cannot_update_order_status PASSED [ 45%]
+tests/test_authorization.py::test_admin_can_access_admin_dashboard PASSED [ 47%]
+tests/test_authorization.py::test_admin_login_redirects_directly_to_dashboard PASSED [ 48%]
+tests/test_cart.py::test_add_available_item_to_cart PASSED               [ 50%]
+tests/test_cart.py::test_adding_same_item_twice_increments_quantity PASSED [ 51%]
+tests/test_cart.py::test_cart_quantity_can_be_updated PASSED             [ 52%]
+tests/test_cart.py::test_cart_item_can_be_removed PASSED                 [ 54%]
+tests/test_cart.py::test_empty_cart_shows_empty_state PASSED             [ 55%]
+tests/test_cart.py::test_placing_order_with_empty_cart_is_rejected PASSED [ 56%]
+tests/test_cart.py::test_update_cart_with_zero_quantity_removes_item PASSED [ 58%]
+tests/test_cart.py::test_adding_item_beyond_stock_is_capped PASSED       [ 59%]
+tests/test_cart.py::test_cart_update_caps_quantity_to_available_stock PASSED [ 60%]
+tests/test_menu.py::test_menu_page_lists_available_items PASSED          [ 62%]
+tests/test_menu.py::test_menu_page_does_not_list_unavailable_items PASSED [ 63%]
+tests/test_menu.py::test_menu_is_viewable_without_login PASSED           [ 64%]
+tests/test_menu.py::test_menu_search_returns_matching_items PASSED       [ 66%]
+tests/test_menu.py::test_menu_search_is_case_insensitive PASSED          [ 67%]
+tests/test_menu.py::test_menu_search_with_no_matches_shows_empty_state PASSED [ 68%]
+tests/test_menu.py::test_out_of_stock_item_cannot_be_added_to_cart PASSED [ 70%]
+tests/test_menu.py::test_unavailable_item_cannot_be_added_to_cart_even_via_direct_request PASSED [ 71%]
+tests/test_menu.py::test_adding_nonexistent_item_to_cart_is_rejected PASSED [ 72%]
+tests/test_order_cancellation.py::test_student_can_cancel_pending_order_within_window PASSED [ 74%]
+tests/test_order_cancellation.py::test_cancel_restores_stock_for_multiple_units PASSED [ 75%]
+tests/test_order_cancellation.py::test_cancel_after_window_expired_is_rejected PASSED [ 77%]
+tests/test_order_cancellation.py::test_cancel_non_pending_order_is_rejected PASSED [ 78%]
+tests/test_order_cancellation.py::test_student_cannot_cancel_another_students_order PASSED [ 79%]
+tests/test_order_cancellation.py::test_cancel_nonexistent_order_is_rejected PASSED [ 81%]
+tests/test_order_cancellation.py::test_cancel_requires_login PASSED      [ 82%]
+tests/test_order_cancellation.py::test_cancel_button_hidden_for_non_pending_orders PASSED [ 83%]
+tests/test_order_cancellation.py::test_cancel_button_shown_for_pending_orders PASSED [ 85%]
+tests/test_orders.py::test_valid_order_can_be_placed PASSED              [ 86%]
+tests/test_orders.py::test_order_total_is_calculated_correctly PASSED    [ 87%]
+tests/test_orders.py::test_order_total_sums_multiple_distinct_items PASSED [ 89%]
+tests/test_orders.py::test_stock_decreases_after_successful_order PASSED [ 90%]
+tests/test_orders.py::test_item_marked_unavailable_when_stock_reaches_zero PASSED [ 91%]
+tests/test_orders.py::test_insufficient_stock_prevents_order PASSED      [ 93%]
+tests/test_orders.py::test_order_service_rejects_insufficient_stock_directly PASSED [ 94%]
+tests/test_orders.py::test_order_appears_in_history PASSED               [ 95%]
+tests/test_orders.py::test_order_history_only_shows_own_orders PASSED    [ 97%]
+tests/test_orders.py::test_order_uses_current_database_price_not_a_stale_client_value PASSED [ 98%]
+tests/test_orders.py::test_order_ignores_extraneous_client_supplied_fields PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/test_admin.py: 2 warnings
+tests/test_order_cancellation.py: 7 warnings
+tests/test_orders.py: 11 warnings
+  /usr/local/lib/python3.12/dist-packages/sqlalchemy/sql/schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_order_cancellation.py::test_student_can_cancel_pending_order_within_window
+tests/test_order_cancellation.py::test_cancel_restores_stock_for_multiple_units
+tests/test_order_cancellation.py::test_cancel_non_pending_order_is_rejected
+tests/test_order_cancellation.py::test_student_cannot_cancel_another_students_order
+tests/test_order_cancellation.py::test_cancel_nonexistent_order_is_rejected
+  /home/claude/project/smart-campus-canteen/services/order_service.py:63: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = now or datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 74 passed, 25 warnings in 15.25s =======================

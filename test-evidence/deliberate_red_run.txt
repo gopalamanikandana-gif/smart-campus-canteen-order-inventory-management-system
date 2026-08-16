@@ -1,0 +1,99 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/claude/project/smart-campus-canteen
+collecting ... collected 65 items
+
+tests/test_admin.py::test_admin_can_add_menu_item PASSED                 [  1%]
+tests/test_admin.py::test_admin_can_edit_menu_item PASSED                [  3%]
+tests/test_admin.py::test_admin_edit_nonexistent_item_is_handled PASSED  [  4%]
+tests/test_admin.py::test_admin_can_update_price PASSED                  [  6%]
+tests/test_admin.py::test_admin_can_update_stock PASSED                  [  7%]
+tests/test_admin.py::test_admin_setting_stock_to_zero_marks_item_unavailable PASSED [  9%]
+tests/test_admin.py::test_admin_can_remove_menu_item PASSED              [ 10%]
+tests/test_admin.py::test_admin_can_update_order_status PASSED           [ 12%]
+tests/test_admin.py::test_admin_add_item_with_zero_price_is_rejected FAILED [ 13%]
+tests/test_admin.py::test_admin_add_item_with_negative_price_is_rejected PASSED [ 15%]
+tests/test_admin.py::test_admin_add_item_with_non_numeric_price_is_rejected PASSED [ 16%]
+tests/test_admin.py::test_admin_add_item_with_negative_stock_is_rejected PASSED [ 18%]
+tests/test_admin.py::test_admin_add_item_with_non_numeric_stock_is_rejected PASSED [ 20%]
+tests/test_admin.py::test_admin_invalid_order_status_is_rejected PASSED  [ 21%]
+tests/test_admin.py::test_admin_update_status_for_nonexistent_order_is_rejected PASSED [ 23%]
+tests/test_auth.py::test_register_with_valid_data_creates_student PASSED [ 24%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload0-Enter a valid name.] PASSED [ 26%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload1-Enter a valid email.] PASSED [ 27%]
+tests/test_auth.py::test_register_with_invalid_data_is_rejected[payload2-Password must be at least 6 characters.] PASSED [ 29%]
+tests/test_auth.py::test_duplicate_email_registration_is_rejected PASSED [ 30%]
+tests/test_auth.py::test_valid_student_login_succeeds PASSED             [ 32%]
+tests/test_auth.py::test_valid_login_redirects_student_to_menu PASSED    [ 33%]
+tests/test_auth.py::test_valid_login_redirects_admin_to_dashboard PASSED [ 35%]
+tests/test_auth.py::test_login_with_wrong_password_is_rejected PASSED    [ 36%]
+tests/test_auth.py::test_login_with_unknown_email_is_rejected PASSED     [ 38%]
+tests/test_auth.py::test_logout_ends_session PASSED                      [ 40%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_view_cart PASSED [ 41%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_view_order_history PASSED [ 43%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_add_to_cart PASSED [ 44%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_place_order PASSED [ 46%]
+tests/test_authorization.py::test_unauthenticated_user_cannot_access_admin_dashboard PASSED [ 47%]
+tests/test_authorization.py::test_student_cannot_access_admin_dashboard PASSED [ 49%]
+tests/test_authorization.py::test_student_cannot_add_menu_item PASSED    [ 50%]
+tests/test_authorization.py::test_student_cannot_update_order_status PASSED [ 52%]
+tests/test_authorization.py::test_admin_can_access_admin_dashboard PASSED [ 53%]
+tests/test_authorization.py::test_admin_login_redirects_directly_to_dashboard PASSED [ 55%]
+tests/test_cart.py::test_add_available_item_to_cart PASSED               [ 56%]
+tests/test_cart.py::test_adding_same_item_twice_increments_quantity PASSED [ 58%]
+tests/test_cart.py::test_cart_quantity_can_be_updated PASSED             [ 60%]
+tests/test_cart.py::test_cart_item_can_be_removed PASSED                 [ 61%]
+tests/test_cart.py::test_empty_cart_shows_empty_state PASSED             [ 63%]
+tests/test_cart.py::test_placing_order_with_empty_cart_is_rejected PASSED [ 64%]
+tests/test_cart.py::test_update_cart_with_zero_quantity_removes_item PASSED [ 66%]
+tests/test_cart.py::test_adding_item_beyond_stock_is_capped PASSED       [ 67%]
+tests/test_cart.py::test_cart_update_caps_quantity_to_available_stock PASSED [ 69%]
+tests/test_menu.py::test_menu_page_lists_available_items PASSED          [ 70%]
+tests/test_menu.py::test_menu_page_does_not_list_unavailable_items PASSED [ 72%]
+tests/test_menu.py::test_menu_is_viewable_without_login PASSED           [ 73%]
+tests/test_menu.py::test_menu_search_returns_matching_items PASSED       [ 75%]
+tests/test_menu.py::test_menu_search_is_case_insensitive PASSED          [ 76%]
+tests/test_menu.py::test_menu_search_with_no_matches_shows_empty_state PASSED [ 78%]
+tests/test_menu.py::test_out_of_stock_item_cannot_be_added_to_cart PASSED [ 80%]
+tests/test_menu.py::test_unavailable_item_cannot_be_added_to_cart_even_via_direct_request PASSED [ 81%]
+tests/test_menu.py::test_adding_nonexistent_item_to_cart_is_rejected PASSED [ 83%]
+tests/test_orders.py::test_valid_order_can_be_placed PASSED              [ 84%]
+tests/test_orders.py::test_order_total_is_calculated_correctly PASSED    [ 86%]
+tests/test_orders.py::test_order_total_sums_multiple_distinct_items PASSED [ 87%]
+tests/test_orders.py::test_stock_decreases_after_successful_order PASSED [ 89%]
+tests/test_orders.py::test_item_marked_unavailable_when_stock_reaches_zero PASSED [ 90%]
+tests/test_orders.py::test_insufficient_stock_prevents_order PASSED      [ 92%]
+tests/test_orders.py::test_order_service_rejects_insufficient_stock_directly PASSED [ 93%]
+tests/test_orders.py::test_order_appears_in_history PASSED               [ 95%]
+tests/test_orders.py::test_order_history_only_shows_own_orders PASSED    [ 96%]
+tests/test_orders.py::test_order_uses_current_database_price_not_a_stale_client_value PASSED [ 98%]
+tests/test_orders.py::test_order_ignores_extraneous_client_supplied_fields PASSED [100%]
+
+=================================== FAILURES ===================================
+_______________ test_admin_add_item_with_zero_price_is_rejected ________________
+
+admin_client = <FlaskClient <Flask 'app'>>, app = <Flask 'app'>
+
+    def test_admin_add_item_with_zero_price_is_rejected(admin_client, app):
+        response = admin_client.post(
+            "/admin/items/add",
+            data={"name": "Bad Price Item", "category": "Snacks", "price": "0", "stock": "5"},
+            follow_redirects=True,
+        )
+        assert response.status_code == 200
+>       assert b"Enter valid item details." in response.data
+E       assert b'Enter valid item details.' in b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>Admin Dashboard | Campus Canteen</title>\n  <link rel="stylesheet" href="/static/css/style.css">\n  <script defer src="/static/js/app.js"></script>\n</head>\n<body>\n<header class="navbar">\n  <a class="brand" href="/menu">Campus<span>Canteen</span></a>\n  <nav>\n    <a href="/menu">Menu</a>\n    \n      <a href="/cart">Cart</a>\n      <a href="/orders">My Orders</a>\n      <a href="/admin">Admin</a>\n      <span class="user-chip">Test Admin</span>\n      <a class="btn btn-outline" href="/logout">Logout</a>\n    \n  </nav>\n</header>\n\n<main class="container">\n  \n    \n      <div class="flash success">Menu item added.</div>\n    \n  \n  \n<div class="page-head"><div><p class="eyebrow">ADMIN CONTROL CENTER</p><h1>Dashboard</h1></div></div>\n<section class="admin-grid">\n<div class="panel"><h2>Add menu item</h2>\n<form method="post" action="/admin/items/add" class="form-grid">\n<input name="name" placeholder="Item name" required maxlength="120"><input name="category" placeholder="Category" required maxlength="80">\n<textarea name=...placeholder="Stock" required><button class="btn" type="submit">Add item</button>\n</form></div>\n<div class="panel"><h2>Inventory</h2>\n<div class="admin-list"><details><summary><b>Bad Price Item</b><span>\xe2\x82\xb90.00 \xc2\xb7 5 stock</span></summary>\n<form method="post" action="/admin/items/1/edit" class="form-grid compact">\n<input name="name" value="Bad Price Item" required><input name="category" value="Snacks" required>\n<input name="price" type="number" min="0.01" step="0.01" value="0.0" required><input name="stock" type="number" min="0" value="5" required>\n<input class="wide" name="description" value=""><button class="btn" type="submit">Save</button>\n</form><form method="post" action="/admin/items/1/delete"><button class="link-danger" type="submit" data-confirm="Remove this item from the active menu?">Remove</button></form>\n</details></div></div>\n</section>\n<section class="panel"><h2>Orders</h2>\n<div class="table-wrap"><table><thead><tr><th>Order</th><th>Student</th><th>Items</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody>\n\n</tbody></table></div></section>\n\n</main>\n<footer>Smart Campus Canteen Management System</footer>\n</body>\n</html>'
+E        +  where b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>Admin Dashboard | Campus Canteen</title>\n  <link rel="stylesheet" href="/static/css/style.css">\n  <script defer src="/static/js/app.js"></script>\n</head>\n<body>\n<header class="navbar">\n  <a class="brand" href="/menu">Campus<span>Canteen</span></a>\n  <nav>\n    <a href="/menu">Menu</a>\n    \n      <a href="/cart">Cart</a>\n      <a href="/orders">My Orders</a>\n      <a href="/admin">Admin</a>\n      <span class="user-chip">Test Admin</span>\n      <a class="btn btn-outline" href="/logout">Logout</a>\n    \n  </nav>\n</header>\n\n<main class="container">\n  \n    \n      <div class="flash success">Menu item added.</div>\n    \n  \n  \n<div class="page-head"><div><p class="eyebrow">ADMIN CONTROL CENTER</p><h1>Dashboard</h1></div></div>\n<section class="admin-grid">\n<div class="panel"><h2>Add menu item</h2>\n<form method="post" action="/admin/items/add" class="form-grid">\n<input name="name" placeholder="Item name" required maxlength="120"><input name="category" placeholder="Category" required maxlength="80">\n<textarea name=...placeholder="Stock" required><button class="btn" type="submit">Add item</button>\n</form></div>\n<div class="panel"><h2>Inventory</h2>\n<div class="admin-list"><details><summary><b>Bad Price Item</b><span>\xe2\x82\xb90.00 \xc2\xb7 5 stock</span></summary>\n<form method="post" action="/admin/items/1/edit" class="form-grid compact">\n<input name="name" value="Bad Price Item" required><input name="category" value="Snacks" required>\n<input name="price" type="number" min="0.01" step="0.01" value="0.0" required><input name="stock" type="number" min="0" value="5" required>\n<input class="wide" name="description" value=""><button class="btn" type="submit">Save</button>\n</form><form method="post" action="/admin/items/1/delete"><button class="link-danger" type="submit" data-confirm="Remove this item from the active menu?">Remove</button></form>\n</details></div></div>\n</section>\n<section class="panel"><h2>Orders</h2>\n<div class="table-wrap"><table><thead><tr><th>Order</th><th>Student</th><th>Items</th><th>Total</th><th>Status</th><th>Update</th></tr></thead><tbody>\n\n</tbody></table></div></section>\n\n</main>\n<footer>Smart Campus Canteen Management System</footer>\n</body>\n</html>' = <WrapperTestResponse 2520 bytes [200 OK]>.data
+
+tests/test_admin.py:171: AssertionError
+=============================== warnings summary ===============================
+tests/test_admin.py: 2 warnings
+tests/test_orders.py: 11 warnings
+  /usr/local/lib/python3.12/dist-packages/sqlalchemy/sql/schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_admin.py::test_admin_add_item_with_zero_price_is_rejected
+================== 1 failed, 64 passed, 13 warnings in 11.00s ==================
