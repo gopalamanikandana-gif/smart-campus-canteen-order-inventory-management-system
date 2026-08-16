@@ -1,7 +1,19 @@
 .venv/
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 *.pyo
 *.db
 .env
 .pytest_cache/
+=======
+.pytest_cache/
+.env
+*.db
+node_modules/
+dist/
+.playwright/
+test-results/
+screenshots/private/
+.DS_Store
+>>>>>>> c7fc997e74d85e665c68c53bae0e1623e939a991
